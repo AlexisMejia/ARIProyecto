@@ -5,29 +5,31 @@ const transform = require('camaro')
 const json2csv = require('json2csv').parse
 const csv=require('csvtojson');
 const { json } = require('express');
-function txtToXML(file){
+
+
+function txtToXML(file, del){
     console.log(file);
     const fileContents = file;
     csvData = fileContents.split('\n').map(row => row.trim())
 
-    let headings = csvData[0].split(';')
+    let headings = csvData[0].split(del)
 
     let xml = ``
-    xml += '<clientes>\n'
+    xml += '<clientes>\n';
     for(let i = 1; i < csvData.length; i++) {
-        let details = csvData[i].split(';')
-        xml += "<cliente>\n"
+        let details = csvData[i].split(del);
+        xml += "<cliente>\n";
             for(let j = 0; j < headings.length; j++) {
                 xml += `    <${headings[j]}>${details[j]}</${headings[j]}>\n`;
             }
-        xml += "</cliente>\n\n"
+        xml += "</cliente>\n\n";
     }
-    xml += '</clientes>\n'
+    xml += '</clientes>\n';
     console.log(xml);
     return xml;
 }
 
-async function xmlToTxt(file){
+async function xmlToTxt(file,del){
     try {
         console.log(file);
     const template = {
@@ -45,7 +47,10 @@ async function xmlToTxt(file){
     var result = await transform.transform(file, template);
     console.log(result);
     var csv = json2csv(result.data)
-    csv = csv.replace(",",";");
+    if(del != ","){
+        csv = csv.replace(",",del);
+    }
+    
     console.log(csv);
         return csv;
     } catch (error) {
@@ -56,21 +61,25 @@ async function xmlToTxt(file){
     
 }
 
-function JsonToTxt(file){
+function JsonToTxt(file,del){
     var csv = json2csv(JSON.parse(file));
-    csv.replace(",",";");
+    
+
+    if(del != ","){
+        csv = csv.replace(",",del);
+    }
     
     return csv;
    
 }
 
-async function TxtToJson(file){
+async function TxtToJson(file,del){
     console.log(file);
     var header = file.split("\n")[0].split(";");
     // fs npm package
     var res =  await csv({noheader: false,
     headers: header,
-    delimiter: ";"
+    delimiter: del
     }).fromString(file);
     console.log(res);
     return JSON.stringify(res);

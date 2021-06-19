@@ -13,14 +13,21 @@ block content
             option(value='1') xml
             option(value='2') txt
             option(value='3') json
-          input#llave.form-control.mb-3(type='text' placeholder='llave' required='')
+          input#llave.form-control.mb-3(type='text' placeholder='Delimitador' required='')
           input#clave.form-control.mb-3(type='text' placeholder='clave' required='')
 
           button.btn.btn-primary#btn_submit(type='submit') Submit
 
       .col
         #resultFile.shadow-lg.p-3.mb-5.bg-white.rounded
-          a#donwloadfile.d-none Descargar
+          .form-group
+            label(for="") Archivo origen 
+            textarea.form-control.mb-3#originf(name="" , rows="9")
+          .form-group
+            label(for="") Archivo Destino 
+            textarea.form-control.mb-3#resultf(name="" , rows="9") 
+          .form-group
+            a#donwloadfile.d-none.mb-3 Descargar
 
 
     

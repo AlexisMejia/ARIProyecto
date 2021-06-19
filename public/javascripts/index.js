@@ -4,9 +4,13 @@
 var btn = document.getElementById("btn_submit");
 var file = document.getElementById("formFile");
 var option = document.getElementById("formSelect");
-var llave = document.getElementById("llave");
+var delimitador = document.getElementById("llave");
 var clave = document.getElementById("clave");
 var dnl = document.getElementById("donwloadfile");
+var origen = document.getElementById("originf");
+var resultadof = document.getElementById("resultf");
+
+
 btn.addEventListener("click", handleSubmit);
 
 
@@ -26,12 +30,13 @@ function handleSubmit(e){
                 fetchjson.convertir_a = option.options[option.selectedIndex].text;
                 
                 fetchjson.clave = clave.value;
-    
+                fetchjson.delimitador = delimitador.value;
                 var myFile = file.files[0];
                 var reader = new FileReader();
                 reader.readAsText(myFile);
                 reader.onload=function(){
                     var strfile = reader.result;
+                    origen.value = reader.result;
                     fetchjson.file = strfile;
                     console.log(fetchjson);
                     var re = /[0-9]{16}/g;
@@ -110,6 +115,7 @@ function request(data){
             }
         } while(m)
 
+        resultadof.value = newstrfile.toString();
         if(response.tipo == "xml"){
             dnl.classList.remove("d-none");
             dnl.setAttribute('href', 'data:text/xml;charset=utf-8,' + encodeURIComponent(newstrfile))
