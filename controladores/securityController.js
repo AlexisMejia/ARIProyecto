@@ -13,7 +13,9 @@ async function handleXMl(req,res){
     
         //xml to txt
         if(req.body.tipo == "xml" && req.body.convertir_a == "txt"){
-            res.status(200).json({result: convertidor.convertFunctions.xmlToTxt(req.body.file), 
+            var resultado = await convertidor.convertFunctions.xmlToTxt(req.body.file)
+            console.log(resultado);
+            res.status(200).json({result: resultado , 
                 tipo: 'txt'});
         }
     

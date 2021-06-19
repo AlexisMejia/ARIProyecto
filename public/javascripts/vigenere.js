@@ -27,7 +27,7 @@ function cifrado(creditcard, key) {
     
     var cccodiado =[];                 
 
-	for(var i=0; i < 13; i++){
+	for(var i=0; i < 16; i++){
         for(var j=0; j<10; j++){
             if(ccarray[i] == coder[0][j]){
                 x = coder[0][j];
@@ -50,9 +50,9 @@ function cifrado(creditcard, key) {
     //document.getElementById("demo").innerHTML = cccodeado;
 }
 
-function clickcodear(){
-document.getElementById("demo").innerHTML = cifrado("4613827503116","2634159871253");
-}
+// function clickcodear(){
+// document.getElementById("demo").innerHTML = cifrado("4613827503116","2634159871253");
+// }
 
 function decifrado(creditcardcoder, key){
     
@@ -69,7 +69,7 @@ function decifrado(creditcardcoder, key){
     }
 
     var ccdecoder =[];
-    for(var i=0; i<13; i++){
+    for(var i=0; i<16; i++){
         for(var j=0; j<10; j++){
             if(cccodiado[i] == coder[clave[i]][j]){
                 ccdecoder[i] = coder[0][j];
@@ -81,6 +81,7 @@ function decifrado(creditcardcoder, key){
     
     return ccdecoder;
 }
-function clickdecodear(){
-document.getElementById("demo").innerHTML = decifrado("6247976374369","2634159871253");
-}
+
+// function clickdecodear(){
+// document.getElementById("demo").innerHTML = decifrado("6247976374369","2634159871253");
+// }

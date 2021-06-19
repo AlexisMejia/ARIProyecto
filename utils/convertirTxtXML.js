@@ -45,9 +45,9 @@ async function xmlToTxt(file){
     var result = await transform.transform(file, template);
     console.log(result);
     var csv = json2csv(result.data)
-    csv.replace(",",";");
+    csv = csv.replace(",",";");
     console.log(csv);
-        return result;
+        return csv;
     } catch (error) {
         console.log(error);
         return ""
@@ -59,6 +59,7 @@ async function xmlToTxt(file){
 function JsonToTxt(file){
     var csv = json2csv(JSON.parse(file));
     csv.replace(",",";");
+    
     return csv;
    
 }
