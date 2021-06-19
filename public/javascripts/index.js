@@ -6,6 +6,7 @@ var file = document.getElementById("formFile");
 var option = document.getElementById("formSelect");
 var llave = document.getElementById("llave");
 var clave = document.getElementById("clave");
+var dnl = document.getElementById("donwloadfile");
 btn.addEventListener("click", handleSubmit);
 
 
@@ -22,10 +23,18 @@ function handleSubmit(e){
 
             fetchjson.tipo = file.value.split(".")[1];
             fetchjson.convertir_a = option.options[option.selectedIndex].text;
-            fetchjson.file = file.files[0];
+            
             fetchjson.clave = clave.value;
-            console.log(fetchjson);
-            request(fetchjson);
+
+            var myFile = file.files[0];
+            var reader = new FileReader();
+            reader.readAsText(myFile);
+            reader.onload=function(){
+                fetchjson.file = reader.result;
+                console.log(fetchjson);
+                request(fetchjson);
+            }
+            
         }else{
             alert("valores iguales a convertir, ingrese un valor diferente");
         }
@@ -48,11 +57,20 @@ function request(data){
         'Content-Type': 'application/json'
       }
     }).then(res => res.json())
-    .catch(error => console.error('Error:', error))
+    .catch(error => console.error('Error:'))
     .then(response => {
+        if(response.tipo == "xml"){
+            dnl.classList.remove("d-none");
+            dnl.setAttribute('href', 'data:text/xml;charset=utf-8,' + encodeURIComponent(response.result))
+            dnl.setAttribute('download', "resultado.xml");
+        }
 
-        console.log('Success:', response)
-        alert("succes");
+        if(response.tipo == "txt"){
+            dnl.classList.remove("d-none");
+            dnl.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(response.result))
+            dnl.setAttribute('download', "resultado.txt");
+        }
+        console.log(response.result);
     });
 }
 
