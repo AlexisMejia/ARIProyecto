@@ -1,15 +1,4 @@
-function cifrado() {
-    
-    var duitest = "4613827503116";
-    var duiarray =duitest.split("");
-    for (var i=0; i < duiarray.length; i++){
-    	duiarray[i] = parseInt(duiarray[i]);
-    }
-    //document.getElementById("demo").innerHTML = duiarray;
-
-    var clave = [5,2,6,7,8,4,3,9,1];
-    
-    var coder = [[0,1,2,3,4,5,6,7,8,9],
+var coder = [[0,1,2,3,4,5,6,7,8,9],
                  [1,2,3,4,5,6,7,8,9,0],
                  [2,3,4,5,6,7,8,9,0,1],
                  [3,4,5,6,7,8,9,0,1,2],
@@ -19,13 +8,28 @@ function cifrado() {
                  [7,8,9,0,1,2,3,4,5,6],
                  [8,9,0,1,2,3,4,5,6,7],
                  [9,0,1,2,3,4,5,6,7,8]];
+                 
+function cifrado() {
+    
+    var creditcard = "4613827503116";
+    var ccarray =creditcard.split("");
+    for (var i=0; i < ccarray.length; i++){
+    	ccarray[i] = parseInt(ccarray[i]);
+    }
+    //document.getElementById("demo").innerHTML = ccarray;
 
-    var duicodiado =[];                 
+    //var clave = [2,6,3,4,1,5,9,8,7,1,2,5,3];
+    var key = "2634159871253";
+    var clave =key.split("");
+    for (var i=0; i < clave.length; i++){
+    	clave[i] = parseInt(clave[i]);
+    }
+    
+    var cccodiado =[];                 
 
-    //var dui = document.getElementById("dui").value;
 	for(var i=0; i < 13; i++){
         for(var j=0; j<10; j++){
-            if(duiarray[i] == coder[0][j]){
+            if(ccarray[i] == coder[0][j]){
                 x = coder[0][j];
                 //document.getElementById("demo").innerHTML = x;
                 for(var j=0; j<10; j++){
@@ -34,10 +38,39 @@ function cifrado() {
                       //document.getElementById("demo").innerHTML = y;
                   }
         		}
-                duicodiado[i] = coder[x][y];
-                //document.getElementById("demo").innerHTML = duicodiado[5];
+                cccodiado[i] = coder[x][y];
+                //document.getElementById("demo").innerHTML = cccodiado[5];
             }
         }
     }
-    //document.getElementById("demo").innerHTML = duicodiado;
+    cccodiado = cccodiado.toString().replace(/,/g, "");
+    //document.getElementById("demo").innerHTML = cccodiado;
+    
+    //return ccodiado;
+}
+
+function decifrado(){
+    
+    var creditcardcoder = "6247976374369";
+    var cccodiado =creditcardcoder.split("");
+    for (var i=0; i < cccodiado.length; i++){
+    	cccodiado[i] = parseInt(cccodiado[i]);
+    }
+    
+	var key = "2634159871253";
+    var clave =key.split("");
+    for (var i=0; i < clave.length; i++){
+    	clave[i] = parseInt(clave[i]);
+    }
+
+    var ccdecoder =[];
+    for(var i=0; i<13; i++){
+        for(var j=0; j<10; j++){
+            if(cccodiado[i] == coder[clave[i]][j]){
+                ccdecoder[i] = coder[0][j];
+            }
+        }
+    }
+    ccdecoder = ccdecoder.toString().replace(/,/g, "");
+    //document.getElementById("demo").innerHTML = ccdecoder;
 }
