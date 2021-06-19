@@ -1,6 +1,6 @@
 function cifrado() {
     
-    var duitest = "058462450";
+    var duitest = "4613827503116";
     var duiarray =duitest.split("");
     for (var i=0; i < duiarray.length; i++){
     	duiarray[i] = parseInt(duiarray[i]);
@@ -23,7 +23,7 @@ function cifrado() {
     var duicodiado =[];                 
 
     //var dui = document.getElementById("dui").value;
-	for(var i=0; i < 9; i++){
+	for(var i=0; i < 13; i++){
         for(var j=0; j<10; j++){
             if(duiarray[i] == coder[0][j]){
                 x = coder[0][j];
