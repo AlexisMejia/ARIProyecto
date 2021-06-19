@@ -1,15 +1,14 @@
 function cifrado() {
     
-    var duitest = 258462450;
-    var duiarray =[];
-    for(var i=0; i<9 ;i++){
-        duiarray[i] = duitest % 10;
-        duitest = Math.floor(duitest / 10);
+    var duitest = "058462450";
+    var duiarray =duitest.split("");
+    for (var i=0; i < duiarray.length; i++){
+    	duiarray[i] = parseInt(duiarray[i]);
     }
-    const reversed = duiarray.reverse();
-    //document.getElementById("demo").innerHTML = duiarray[0];
+    //document.getElementById("demo").innerHTML = duiarray;
 
-    var clave = [5,2,6,7,8,0,3,9,1];
+    var clave = [5,2,6,7,8,4,3,9,1];
+    
     var coder = [[0,1,2,3,4,5,6,7,8,9],
                  [1,2,3,4,5,6,7,8,9,0],
                  [2,3,4,5,6,7,8,9,0,1],
@@ -24,21 +23,21 @@ function cifrado() {
     var duicodiado =[];                 
 
     //var dui = document.getElementById("dui").value;
-
-    for(var i=0; i < 10; i++){
+	for(var i=0; i < 9; i++){
         for(var j=0; j<10; j++){
-            if(duiarray[j] == coder[0][j]){
-                var x = coder[0][j];
-            }document.getElementById("demo").innerHTML = x;
-            
+            if(duiarray[i] == coder[0][j]){
+                x = coder[0][j];
+                //document.getElementById("demo").innerHTML = x;
+                for(var j=0; j<10; j++){
+                  if(clave[i] == coder[j][0]){
+                      y = coder[j][0];
+                      //document.getElementById("demo").innerHTML = y;
+                  }
+        		}
+                duicodiado[i] = coder[x][y];
+                //document.getElementById("demo").innerHTML = duicodiado[5];
+            }
         }
-        if(clave[i] == coder[i][0]){
-            var y = coder[i][0];
-        }
-        for(var k=0; k<9; k++){
-            duicodiado[k] = coder[x][y];
-            
-        }        
     }
-
+    //document.getElementById("demo").innerHTML = duicodiado;
 }
