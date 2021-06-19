@@ -10,17 +10,17 @@ function xmlToTxt(file){
 }
 
 function JsonToTxt(file){
-    const myObj = { name: "John", age: 31, city: "New York" };
-    const myJSON = JSON.stringify(myObj);
-    localStorage.setItem("testJSON", myJSON);
+    
+    var data  = "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(file)); 
 
-    // Retrieving data:
-    let text = localStorage.getItem("testJSON");
-    let obj = JSON.parse(text);
+    var a       = document.createElement('a'); 
+      a.href      = 'data:' + data; 
+      a.download  = 'data.txt'; 
+      a.innerHTML = 'download .txt file of json'; 
 }
 
 function TxtToJson(file){
-
+    const obj = JSON.parse(file);
 }
 
 function XmlToJson(file){

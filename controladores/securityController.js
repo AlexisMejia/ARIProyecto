@@ -24,8 +24,6 @@ async function handleXMl(req,res){
         return convertidor.convertFunctions.XmlToJson(req.body.file);
     }
 
-    //json to txt
-    //json to xml
 
 
 
