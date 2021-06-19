@@ -1,7 +1,8 @@
 
 const fs = require('fs')
 const xmlcsv = require("xml-csv");
-
+const transform = require('camaro')
+const json2csv = require('json2csv').parse
 
 function txtToXML(file){
     console.log(file);
@@ -25,21 +26,32 @@ function txtToXML(file){
     return xml;
 }
 
-function xmlToTxt(file){
-    var result;
-    xmlcsv({
-        source: file,
-        rootXMLElement: "cliente",
-        headerMap: [
-            ['documento', 'documento', 'string'],
-            ['primer-nombre', 'primero-nombre', 'string'],
-            ['apellido', 'apellido', 'string'],
-            ['credit-card', 'credit-card', 'string'],
-            ['tipo', 'tipo', 'string'],
-            ['telefono', 'telefono', 'string'],
-        ]
-    }).pipe(result);;
-    console.log(fs.createWriteStream());
+async function xmlToTxt(file){
+    try {
+        console.log(file);
+    const template = {
+        data: [ "//cliente",{
+            documento: 'documento',
+            primer_nombre: 'primer-nombre',
+            apellido: 'apellido',
+            credit_card: "credit-card",
+            tipo: "tipo",
+            telefono: "telefono"
+        }]
+
+    }
+
+    var result = await transform.transform(file, template);
+    console.log(result);
+    var csv = json2csv(result.data)
+    console.log(csv);
+        return "";
+    } catch (error) {
+        console.log(error);
+        return ""
+    }
+    
+    
 }
 
 function JsonToTxt(file){
