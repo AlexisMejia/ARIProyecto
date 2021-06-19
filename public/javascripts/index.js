@@ -59,6 +59,7 @@ function request(data){
     }).then(res => res.json())
     .catch(error => console.error('Error:'))
     .then(response => {
+        console.log(response);
         if(response.tipo == "xml"){
             dnl.classList.remove("d-none");
             dnl.setAttribute('href', 'data:text/xml;charset=utf-8,' + encodeURIComponent(response.result))
@@ -70,7 +71,13 @@ function request(data){
             dnl.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(response.result))
             dnl.setAttribute('download', "resultado.txt");
         }
-        console.log(response.result);
+
+        if(response.tipo == "json"){
+            dnl.classList.remove("d-none");
+            dnl.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(response.result))
+            dnl.setAttribute('download', "resultado.json");
+        }
+        
     });
 }
 

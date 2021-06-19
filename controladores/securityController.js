@@ -19,12 +19,15 @@ async function handleXMl(req,res){
     
         //txt to json
         if(req.body.tipo == "txt" && req.body.convertir_a == "json"){
-            return convertidor.convertFunctions.TxtToJson(req.body.file);
+            var resultado = await convertidor.convertFunctions.TxtToJson(req.body.file);
+            res.status(200).json({result: resultado, 
+                tipo: 'json'});
         }
     
         //json to txt
         if(req.body.tipo == "json" && req.body.convertir_a == "txt"){
-            return convertidor.convertFunctions.JsonToTxt(req.body.file);
+            res.status(200).json({result: convertidor.convertFunctions.JsonToTxt(req.body.file), 
+                tipo: 'txt'});
         }
     
         
