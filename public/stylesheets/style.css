@@ -1,8 +1,6 @@
 body {
-  padding: 5px;
+  background-color: #6c757d !important;
+  padding: 10vh;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-#inputFileId,#resultFile{
-  height: 70vh;
-}

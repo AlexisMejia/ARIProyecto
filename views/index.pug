@@ -2,39 +2,36 @@ extends layout
 
 block content
   .container.mt-5
-    .row.gx-5.h-50
-      .col
-        form().shadow-lg.p-3.mb-5.bg-white.rounded#inputFileId
-          .mb-3
-            label.form-label(for='formFile') Suba un xml, txt o Json
-            input#formFile.form-control(type='file')
-          select.form-select.form-select-lg.mb-3#formSelect(aria-label='.form-select-lg example')
-            option(selected='') Convertir a
-            option(value='1') xml
-            option(value='2') txt
-            option(value='3') json
-          input#llave.form-control.mb-3(type='text' placeholder='Delimitador' required='')
-          input#clave.form-control.mb-3(type='text' placeholder='clave' required='')
+    .col.g-3
+      form().p-3.mb-5.bg-dark.bg-gradient.rounded.border.border-light#inputFileId
+        .mb-3
+          label.form-label.fw-bold.text-light(for='formFile') UPLOAD AN .xml, .txt or .json EXTENSION FILE
+          input#formFile.form-control(type='file')
+        select.form-select.form-select-lg.mb-3#formSelect(aria-label='.form-select-lg example')
+          option(selected='') Convert to
+          option(value='1') xml
+          option(value='2') txt
+          option(value='3') json
+        input#llave.form-control.mb-3(type='text' placeholder='Delimiter' required='')
+        input#clave.form-control.mb-3(type='text' placeholder='Key' required='')
+        button.btn.btn-outline-light.center#btn_submit(type='submit') Submit
 
-          button.btn.btn-primary#btn_submit(type='submit') Submit
-
-      .col
-        #resultFile.shadow-lg.p-3.mb-5.bg-white.rounded
-          .form-group
-            label(for="") Archivo origen 
-            textarea.form-control.mb-3#originf(name="" , rows="9")
-          .form-group
-            label(for="") Archivo Destino 
-            textarea.form-control.mb-3#resultf(name="" , rows="9") 
-          .form-group
-            a#donwloadfile.d-none.mb-3 Descargar
-
-
-    
+    .col
+      #resultFile.p-3.mb-5.bg-dark.bg-gradient.rounded.border.border-light
+        .form-group.p.text-center
+          label.text-uppercase.fw-bold.text-light(for="") Source file 
+          textarea.form-control.mb-3#originf(name="" , rows="")
+        .form-group.p.text-center
+          label.text-uppercase.fw-bold.text-light(for="") Target file 
+          textarea.form-control.mb-3#resultf(name="" , rows="") 
+        .form-group
+          a#donwloadfile
+            button.btn.btn-outline-light.center Download
+          // a#donwloadfile.d-none.mb-3 Descargar
 
 block scripts 
   script(src="/javascripts/vigenere.js")
   script(src="/javascripts/index.js")
-  
+
 
 
